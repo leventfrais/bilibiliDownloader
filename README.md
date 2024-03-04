@@ -4,7 +4,7 @@
 参考 https://github.com/SocialSisterYi/bilibili-API-collect/tree/master 的api  
 原理大致为 根据url取bvid，再申请cid与dash流信息。构造requests并伪造Referer绕过盗链检测后下载音视频流。最后使用ffmpeg合并  
 支持多p cookie验证获取高质量度流 脚本自动化合并  
-依赖库：re argparse os requests shutil datetime  
+依赖库：re argparse os requests tqdm datetime  
 
 ##### 已内置 ffmpeg   默认会生成合并音视频的脚本  
 
@@ -12,12 +12,14 @@
 
 ##### 简单的获取方法 访问b站时 F12打开开发者模式 找到网络 找Cookie即可  
 
+##### B站视频标题含有特殊字符 包括但不限于 / \ emoji表情符号 时 可能会无法生成正确的ffmpeg混流脚本，请自行修改参数使用ffmpeg混流  
+
 ## 使用方法：  
 
 ##### python 命令行 启动  
 
-python bilidl.py -u [URL]  
-bilidl.exe -u [URL]  
+python main.py -u [URL]  
+main.exe -u [URL]  
 
 ##### -u "[URL]" 就可以了。该指令会自动获取最高质量流，下载至downloads目录，同时会创建.bat脚本，执行即可合并音视频流生成最终.mp4文件  
 
